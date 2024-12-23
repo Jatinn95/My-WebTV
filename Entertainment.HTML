@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entertainment - My WebTV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #004c99;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .home-link {
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 15px;
+        }
+        .home-link::before {
+            content: '\2190'; /* Left arrow */
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        .home-link:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            width: 50px;
+            height: auto;
+        }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            color: #004c99;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .video {
+            text-align: center;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .video h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .video button {
+            padding: 8px 15px;
+            background-color: #004c99;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .video button:hover {
+            background-color: #003366;
+        }
+
+        footer {
+            background-color: #004c99;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .social-icons a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="home-link">Home</a>
+        <h1>Entertainment - My WebTV</h1>
+    </header>
+
+<main>
+    <h2>Explore the Best Entertainment Channels</h2>
+    <div class="video-grid">
+        <div class="video">
+            <img src="https://i.postimg.cc/GmtsZ6bH/Dangal.png" alt="Dangal">
+            <h3>Dangal</h3>
+            <button onclick="openVideo('https://live-dangal.akamaized.net/liveabr/playlist.m3u8', 'Dangal')">Play</button>
+        </div>
+        <div class="video">
+            <img src="https://i.postimg.cc/05mxGdw4/logo-for-website.png" alt="QTV">
+            <h3>QTV</h3>
+            <button onclick="openVideo('https://vg-theqlive.akamaized.net/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-306905/main.m3u8', 'QTV')">Play</button>
+        </div>
+        <div class="video">
+            <img src="https://i.postimg.cc/MHqvQzZP/Nazara-TV.jpg" alt="Nazara TV">
+            <h3>Nazara TV</h3>
+            <button onclick="openVideo('https://epiconvh.s.llnwi.net/nazara/master.m3u8', 'Nazara TV')">Play</button>
+        </div>
+        <div class="video">
+            <img src="https://i.imgur.com/sh0yFSf.png" alt="Anjan TV">
+            <h3>Anjan TV</h3>
+            <button onclick="openVideo('https://anjantvevent.pc.cdn.bitgravity.com/anjantv/live/amlst:event_anjan_,b400,b800,b1024,b1200,b1500,b4000,.smil/playlist.m3u8', 'Anjan TV')">Play</button>
+        </div>
+        <div class="video">
+            <img src="https://i.postimg.cc/0ySqBsQM/240px-Sony-Kal-Logo.jpg" alt="Sony Kal">
+            <h3>Sony Kal</h3>
+            <button onclick="openVideo('https://spt-sonykal-1-us.lg.wurl.tv/playlist.m3u8', 'Sony Kal')">Play</button>
+        </div>
+        <div class="video">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Dabangg_TV_black.png" alt="Dabang">
+            <h3>Dabang</h3>
+            <button onclick="openVideo('https://sabliveyupp.akamaized.net/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/sablive_https/7a46e3db-6fbc-4630-b35b-1a48b4086e7f/2.m3u8', 'Dabang')">Play</button>
+        </div>
+        <div class="video">
+            <img src="https://a.jsrdn.com/hls/23049/pitaara-tv/logo_20231219_220959_63.png" alt="Pitaara TV">
+            <h3>Pitaara TV</h3>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/pitaara-tv/playlist.m3u8', 'Pitaara TV')">Play</button>
+        </div>
+
+        <!-- Dangal 2 -->
+        <div class="video">
+            <img src="https://i.postimg.cc/DzKK1Rf8/dangal.jpg" alt="Dangal 2">
+            <h3>Dangal 2</h3>
+            <button onclick="openVideo('https://live-dangal2.akamaized.net/liveabr/playlist.m3u8', 'Dangal 2')">Play</button>
+        </div>
+
+        <!-- Shemaroo Umang Plus -->
+        <div class="video">
+            <img src="https://a.jsrdn.com/hls/23141/shemaroo-umang-plus/shemaroo-umang-plus_thumbh_20240206_191122.jpg" alt="Shemaroo Umang Plus">
+            <h3>Shemaroo Umang Plus</h3>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/shemaroo-umang-plus/c6286090-a036-464e-90fb-a1d68e5f5581/0.m3u8', 'Shemaroo Umang Plus')">Play</button>
+        </div>
+
+        <!-- DesiPlay -->
+        <div class="video">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Desi_Play_TV_black.png" alt="DesiPlay">
+            <h3>DesiPlay</h3>
+            <button onclick="openVideo('https://desiplaylive.akamaized.net/ptnr-yupptv/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-660691/46a7e161-6f04-4618-aafb-cae5e81f5c3b/0.m3u8', 'DesiPlay')">Play</button>
+        </div>
+
+        <!-- PTC Punjabi Gold -->
+        <div class="video">
+            <img src="https://i.imgur.com/g88pV3L.png" alt="PTC Punjabi Gold">
+            <h3>PTC Punjabi Gold</h3>
+            <button onclick="openVideo('https://streaming.ptcplay.com/ptcpunjabiGoldINOne/smil:Live.smil/playlist.m3u8', 'PTC Punjabi Gold')">Watch Now</button>
+        </div>
+
+        <!-- Zee Punjabi -->
+        <div class="video">
+            <img src="" alt="Zee Punjabi">
+            <h3>Zee Punjabi</h3>
+            <button onclick="openVideo('https://zeepunjabi.akamaized.net/zeepunjabi.smil/playlist.m3u8', 'Zee Punjabi')">Watch Now</button>
+        </div>
+
+        <!-- MTV HD -->
+        <div class="video">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/MTV_2021_%28brand_version%29.svg/512px-MTV_2021_%28brand_version%29.svg.png" alt="MTV HD">
+            <h3>MTV HD</h3>
+            <button onclick="openVideo('http://144.217.70.181:9587/hin2/MTVINDIA/index.m3u8', 'MTV HD')">Play</button>
+        </div>
+
+        <!-- aurLife HD -->
+        <div class="video">
+            <img src="https://i.imgur.com/GfWLn3O.jpg" alt="aurLife HD">
+            <h3>aurLife HD</h3>
+            <button onclick="openVideo('http://124.109.47.101/hls/stream1.m3u8', 'aurLife HD')">Play</button>
+        </div>
+
+        <!-- DD National -->
+        <div class="video">
+            <img src="https://i.postimg.cc/Hn28Tc5R/640px-New-logo-of-DD-National.jpg" alt="DD National">
+            <h3>DD National</h3>
+            <button onclick="openVideo('https://d75dqofg5kmfk.cloudfront.net/bpk-tv/Ddnational/default/index.m3u8', 'DD National')">Play</button>
+        </div>
+
+        <!-- Arre -->
+        <div class="video">
+            <img src="https://a.jsrdn.com/hls/22982/arre/logo_20231219_184228_42.png" alt="Arre">
+            <h3>Arre</h3>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/arre/master.m3u8', 'Arre')">Play</button>
+        </div>
+
+        <!-- Green Chillies TV -->
+        <div class="video">
+            <img src="https://a.jsrdn.com/hls/23179/green-chillies-tv/logo_20240627_214400_70.png" alt="Green Chillies TV">
+            <h3>Green Chillies TV</h3>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/green-chillies-tv/playlist.m3u8', 'Green Chillies TV')">Play</button>
+        </div>
+
+        <!-- Epic TV -->
+        <div class="video">
+            <img src="https://source.epicon.in/epicon/assets/images/epicon-logo.png" alt="Epic TV">
+            <h3>Epic TV</h3>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/epic-tv/b6372f40-adad-4d70-9990-75a9c6810898/0.m3u8', 'Epic TV')">Play</button>
+        </div>
+
+        <!-- Geo Kahani -->
+        <div class="video">
+            <img src="https://i.imgur.com/uKYH0IM.png" alt="Geo Kahani">
+            <h3>Geo Kahani</h3>
+            <button onclick="openVideo('https://jk3lz82elw79-hls-live.5centscdn.com/harPalGeo/955ad3298db330b5ee880c2c9e6f23a0.sdp/playlist.m3u8', 'Geo Kahani')">Play</button>
+        </div>
+
+        <!-- Geo Entertainment -->
+        <div class="video">
+            <img src="https://i.postimg.cc/JnjWgGqN/Geo-Entertainment-logo.jpg" alt="Geo Entertainment">
+            <h3>Geo Entertainment</h3>
+            <button onclick="openVideo('https://geotvglobalgeopak.s.llnwi.net/hls/1b9e5fe3a02444109c51a7be2766f566.m3u8', 'Geo Entertainment')">Play</button>
+        </div>
+    </div>
+</main>
+
+
+    <footer>
+        <p>&copy; 2024 My WebTV | All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+
+    <script>
+function openVideo(videoUrl, videoName) {
+    const playerUrl = `PLAY.html?video=${encodeURIComponent(videoUrl)}&name=${encodeURIComponent(videoName)}`;
+    window.location.href = playerUrl;
+}
+    </script>
+</body>
+
+</html>

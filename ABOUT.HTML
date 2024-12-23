@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - My WebTV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #004c99;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .home-link {
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 15px;
+        }
+        .home-link::before {
+            content: '\2190'; /* Left arrow */
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        .home-link:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            width: 50px;
+            height: auto;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #004c99;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: #004c99;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #004c99;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #8f94fb;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="home-link">Home</a>
+        <h1>About Us - My WebTV</h1>
+    </header>
+
+    <main>
+        <h2>Welcome to My WebTV!</h2>
+        <p>
+            My WebTV is your ultimate destination for streaming entertainment, music, and news from around the globe. 
+            Our mission is to bring high-quality content to your fingertips, making entertainment accessible to everyone.
+        </p>
+        <p>
+            Whether you are looking to watch the latest shows, discover new music, or stay updated with world events, 
+            My WebTV has something for everyone. We pride ourselves on offering a user-friendly platform that caters to diverse tastes and interests.
+        </p>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Global Channels</h3>
+                <p>Stream live channels from various countries and languages.</p>
+            </div>
+            <div class="feature-card">
+                <h3>On-Demand Content</h3>
+                <p>Watch your favorite shows and movies anytime, anywhere.</p>
+            </div>
+            <div class="feature-card">
+                <h3>User-Friendly</h3>
+                <p>Enjoy an intuitive interface with personalized recommendations.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My WebTV. All Rights Reserved.</p>
+        <p>Have questions? <a href="contact.html">Contact Us</a></p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="styles/stylesheet.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-title">
+                <img src="LOGO.png" alt="My WebTV Logo" class="logo">
+                <h1>My WebTV</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="INDEX.html">Home</a></li>
+                    <li><a href="ABOUT.html">About</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="searchBar" class="search-bar" placeholder="Search for videos, channels, or categories...">
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h2>Welcome to My WebTV</h2>
+        <p>Explore the world of entertainment at your fingertips. Watch your favorite shows, movies, and more!</p>
+        <div id="username" style="display: none;">User</div>
+        <div id="dropdown">
+            <button id="logoutButton" onclick="logout()">Logout</button>
+        </div>
+        <nav>
+            <button id="signInButton" onclick="redirectToLogin()">Sign In</button>
+            <button id="signUpButton" onclick="redirectToSignup()">Sign Up</button>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Favorites Section -->
+        <section class="section" id="favorites">
+            <h2>Your Favorites</h2>
+            <div class="arrows">
+                <span class="arrow arrow-left">&#9664;</span>
+                <span class="arrow arrow-right">&#9654;</span>
+            </div>
+            <div class="video-container" id="favorites-container">
+                <!-- Favorite videos will be populated here dynamically -->
+            </div>
+            <p id="noFavoritesMessage" style="display: none;">No Favorites Found</p>
+        </section>
+
+        <!-- Recently Added Section -->
+        <section class="section" id="recently-added">
+            <h2>Recently Added Channels</h2>
+            <div class="arrows">
+                <span class="arrow arrow-left">&#9664;</span>
+                <span class="arrow arrow-right">&#9654;</span>
+            </div>
+            <div class="video-container" id="recently-added-container">
+                <!-- Recently added channels will be populated here dynamically -->
+            </div>
+            <p id="noResultsMessage" style="display: none;">No Results Found</p>
+        </section>
+
+<!-- Entertainment Section -->
+<section class="section" id="entertainment">
+    <h2>Entertainment <a href="Entertainment.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- Sony Kal -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/0ySqBsQM/240px-Sony-Kal-Logo.jpg" alt="Sony Kal">
+            <h3>Sony Kal</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'sony-kal', 'Sony Kal', 'https://i.postimg.cc/0ySqBsQM/240px-Sony-Kal-Logo.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://spt-sonykal-1-us.lg.wurl.tv/playlist.m3u8', 'Sony Kal')">Play</button>
+        </div>
+
+        <!-- Dangal -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/GmtsZ6bH/Dangal.png" alt="Dangal">
+            <h3>Dangal</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'dangal', 'Dangal', 'https://i.postimg.cc/GmtsZ6bH/Dangal.png')">&#9734;</i>
+            <button onclick="openVideo('https://live-dangal.akamaized.net/liveabr/playlist.m3u8', 'Dangal')">Play</button>
+        </div>
+
+        <!-- Dangal 2 -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/DzKK1Rf8/dangal.jpg" alt="Dangal 2">
+            <h3>Dangal 2</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'dangal2', 'Dangal 2', 'https://i.postimg.cc/DzKK1Rf8/dangal.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://live-dangal2.akamaized.net/liveabr/playlist.m3u8', 'Dangal 2')">Play</button>
+        </div>
+
+        <!-- Dabang -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Dabangg_TV_black.png" alt="Dabang">
+            <h3>Dabang</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'dabang', 'Dabang', 'https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Dabangg_TV_black.png')">&#9734;</i>
+            <button onclick="openVideo('https://sabliveyupp.akamaized.net/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/sablive_https/7a46e3db-6fbc-4630-b35b-1a48b4086e7f/2.m3u8', 'Dabang')">Play</button>
+        </div>
+
+        <!-- Shemaroo Umang Plus -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23141/shemaroo-umang-plus/shemaroo-umang-plus_thumbh_20240206_191122.jpg" alt="Shemaroo Umang Plus">
+            <h3>Shemaroo Umang Plus</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'shemaroo-umang-plus', 'Shemaroo Umang Plus', 'https://a.jsrdn.com/hls/23141/shemaroo-umang-plus/shemaroo-umang-plus_thumbh_20240206_191122.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/shemaroo-umang-plus/c6286090-a036-464e-90fb-a1d68e5f5581/0.m3u8', 'Shemaroo Umang Plus')">Play</button>
+        </div>
+
+        <!-- DesiPlay -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Desi_Play_TV_black.png" alt="DesiPlay">
+            <h3>DesiPlay</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'desi-play', 'DesiPlay', 'https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Desi_Play_TV_black.png')">&#9734;</i>
+            <button onclick="openVideo('https://desiplaylive.akamaized.net/ptnr-yupptv/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-660691/46a7e161-6f04-4618-aafb-cae5e81f5c3b/0.m3u8', 'DesiPlay')">Play</button>
+        </div>
+
+        <!-- Pitaara COMEDY -->
+        <div class="video" data-category="Entertainment" data-language="Punjabi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23049/pitaara-tv/logo_20231219_220959_63.png" alt="Pitaara COMEDY">
+            <h3>Pitaara COMEDY</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'pitaara-comedy', 'Pitaara COMEDY', 'https://a.jsrdn.com/hls/23049/pitaara-tv/logo_20231219_220959_63.png')">&#9734;</i>
+            <button onclick="openVideo('https://vg-pitaaratvyupp.akamaized.net/ptnr-yupptv/title-Pitaara_Comedy/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-343626/playlist.m3u8', 'Pitaara COMEDY')">Watch Now</button>
+        </div>
+
+        <!-- PTC Punjabi Gold -->
+        <div class="video" data-category="Entertainment" data-language="Punjabi" data-country="India">
+            <img src="https://i.imgur.com/g88pV3L.png" alt="PTC Punjabi Gold">
+            <h3>PTC Punjabi Gold</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ptc-punjabi-gold', 'PTC Punjabi Gold', 'https://i.imgur.com/g88pV3L.png')">&#9734;</i>
+            <button onclick="openVideo('https://streaming.ptcplay.com/ptcpunjabiGoldINOne/smil:Live.smil/playlist.m3u8', 'PTC Punjabi Gold')">Watch Now</button>
+        </div>
+
+        <!-- Zee Punjabi -->
+        <div class="video" data-category="Entertainment" data-language="Punjabi" data-country="India">
+            <img src="" alt="Zee Punjabi">
+            <h3>Zee Punjabi</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'zee-punjabi', 'Zee Punjabi', '')">&#9734;</i>
+            <button onclick="openVideo('https://zeepunjabi.akamaized.net/zeepunjabi.smil/playlist.m3u8', 'Zee Punjabi')">Watch Now</button>
+        </div>
+
+        <!-- MTV HD -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/MTV_2021_%28brand_version%29.svg/512px-MTV_2021_%28brand_version%29.svg.png" alt="MTV HD">
+            <h3>MTV HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'mtv-hd', 'MTV HD', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/MTV_2021_%28brand_version%29.svg/512px-MTV_2021_%28brand_version%29.svg.png')">&#9734;</i>
+            <button onclick="openVideo('http://144.217.70.181:9587/hin2/MTVINDIA/index.m3u8', 'MTV HD')">Play</button>
+        </div>
+
+        <!-- The Q TV -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/05mxGdw4/logo-for-website.png" alt="The Q TV">
+            <h3>The Q TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'the-q-tv', 'The Q TV', 'https://i.postimg.cc/05mxGdw4/logo-for-website.png')">&#9734;</i>
+            <button onclick="openVideo('https://vg-theqlive.akamaized.net/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-306905/main.m3u8', 'The Q TV')">Play</button>
+        </div>
+
+        <!-- Nazara TV -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/MHqvQzZP/Nazara-TV.jpg" alt="Nazara TV">
+            <h3>Nazara TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'nazara-tv', 'Nazara TV', 'https://i.postimg.cc/MHqvQzZP/Nazara-TV.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://epiconvh.s.llnwi.net/nazara/master.m3u8', 'Nazara TV')">Play</button>
+        </div>
+
+        <!-- aurLife HD -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/GfWLn3O.jpg" alt="aurLife HD">
+            <h3>aurLife HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'aurlife-hd', 'aurLife HD', 'https://i.imgur.com/GfWLn3O.jpg')">&#9734;</i>
+            <button onclick="openVideo('http://124.109.47.101/hls/stream1.m3u8', 'aurLife HD')">Play</button>
+        </div>
+
+        <!-- DD National -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/Hn28Tc5R/640px-New-logo-of-DD-National.jpg" alt="DD National">
+            <h3>DD National</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'dd-national', 'DD National', 'https://i.postimg.cc/Hn28Tc5R/640px-New-logo-of-DD-National.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://d75dqofg5kmfk.cloudfront.net/bpk-tv/Ddnational/default/index.m3u8', 'DD National')">Play</button>
+        </div>
+
+        <!-- Arre -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/22982/arre/logo_20231219_184228_42.png" alt="Arre">
+            <h3>Arre</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'arre', 'Arre', 'https://a.jsrdn.com/hls/22982/arre/logo_20231219_184228_42.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/arre/master.m3u8', 'Arre')">Play</button>
+        </div>
+
+        <!-- Green Chillies TV -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23179/green-chillies-tv/logo_20240627_214400_70.png" alt="Green Chillies TV">
+            <h3>Green Chillies TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'green-chillies-tv', 'Green Chillies TV', 'https://a.jsrdn.com/hls/23179/green-chillies-tv/logo_20240627_214400_70.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/green-chillies-tv/playlist.m3u8', 'Green Chillies TV')">Play</button>
+        </div>
+
+        <!-- Anjan -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/sh0yFSf.png" alt="Anjan">
+            <h3>Anjan</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'anjan', 'Anjan', 'https://i.imgur.com/sh0yFSf.png')">&#9734;</i>
+            <button onclick="openVideo('https://anjantvevent.pc.cdn.bitgravity.com/anjantv/live/amlst:event_anjan_,b400,b800,b1024,b1200,b1500,b4000,.smil/playlist.m3u8', 'Anjan')">Play</button>
+        </div>
+
+        <!-- Epic TV -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="India">
+            <img src="https://source.epicon.in/epicon/assets/images/epicon-logo.png" alt="Epic TV">
+            <h3>Epic TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'epic-tv', 'Epic TV', 'https://source.epicon.in/epicon/assets/images/epicon-logo.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/epic-tv/b6372f40-adad-4d70-9990-75a9c6810898/0.m3u8', 'Epic TV')">Play</button>
+        </div>
+
+        <!-- Geo Kahani -->
+        <div class="video" data-category="Entertainment" data-language="Hindi" data-country="Pakistan">
+            <img src="https://i.imgur.com/uKYH0IM.png" alt="Geo Kahani">
+            <h3>Geo Kahani</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'geo-kahani', 'Geo Kahani', 'https://i.imgur.com/uKYH0IM.png')">&#9734;</i>
+            <button onclick="openVideo('https://geokahani-live.s3.amazonaws.com/playlist.m3u8', 'Geo Kahani')">Play</button>
+        </div>
+    </div>
+</section>
+
+<!-- Music Section -->
+<section class="section" id="Music">
+    <h2>Music <a href="Music.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- MH1 -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://static.wikia.nocookie.net/logopedia/images/f/f9/Mh-one.png/revision/latest?cb=20230126181929" alt="MH1">
+            <h3>MH1</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'mh1', 'MH1', 'https://static.wikia.nocookie.net/logopedia/images/f/f9/Mh-one.png/revision/latest?cb=20230126181929')">&#9734;</i>
+            <button onclick="openVideo('https://mhlive.paramountinfosystem.com/mhonemusictest/d0dbe915091d400bd8ee7f27f0791303.sdp/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- PTC Chakde -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://i.imgur.com/4lUwdME.png" alt="PTC Chakde">
+            <h3>PTC Chakde</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ptc-chakde', 'PTC Chakde', 'https://i.imgur.com/4lUwdME.png')">&#9734;</i>
+            <button onclick="openVideo('https://streaming.ptcplay.com/ptcchakdeINONE/smil:Live.smil/playlist.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Tabbar Hits -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23196/tabbar-hits/thumbh_20241119_184504_270.jpg" alt="Tabbar TV">
+            <h3>Tabbar TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'tabbar-hits', 'Tabbar Hits', 'https://a.jsrdn.com/hls/23196/tabbar-hits/thumbh_20241119_184504_270.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/tabbar-hits/1cd7b438-40c9-440f-b7d1-4e52bfa4a5f1/1.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- 9XM -->
+        <div class="video" data-category="Music" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/F17QtN2.png" alt="9XM">
+            <h3>9XM</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, '9xm', '9XM', 'https://i.imgur.com/F17QtN2.png')">&#9734;</i>
+            <button onclick="openVideo('https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/9XM/9XM.isml/index.m3u8')">Play</button>
+        </div>
+
+        <!-- PTC Dhol -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://i.ibb.co/C0y7yFJ/Ptc-Dhol-tv.jpg" alt="PTC Dhol">
+            <h3>PTC Dhol</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ptc-dhol', 'PTC Dhol', 'https://i.ibb.co/C0y7yFJ/Ptc-Dhol-tv.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://streaming.ptcplay.com/ptcdholtvINOne/smil:Live.smil/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- PTC Music -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://i.imgur.com/8PHk66Q.png" alt="PTC Music">
+            <h3>PTC Music</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ptc-music', 'PTC Music', 'https://i.imgur.com/8PHk66Q.png')">&#9734;</i>
+            <button onclick="openVideo('https://streaming.ptcplay.com/ptcMusicINOne/smil:Live.smil/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Wah Punjab -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/yuppfast/content/common/channel/logos/wah-punjabi.png" alt="Wah Punjab">
+            <h3>Wah Punjab</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'wah-punjab', 'Wah Punjab', 'https://d229kpbsb5jevy.cloudfront.net/yuppfast/content/common/channel/logos/wah-punjabi.png')">&#9734;</i>
+            <button onclick="openVideo('https://livegeoroueu.akamaized.net/290723/smil:wahpunjabi.smil/playlist.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- BritAsiaTV -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="Canada">
+            <img src="https://a.jsrdn.com/hls/22693/britasiatv/logo_20231219_185045_64.png" alt="BritAsiaTV">
+            <h3>BritAsiaTV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'britasiatv', 'BritAsiaTV', 'https://a.jsrdn.com/hls/22693/britasiatv/logo_20231219_185045_64.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/britasiatv/master.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Punjabi Hits -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23196/punjabi-hits/logo_20241010_204324_70.png" alt="Punjabi Hits">
+            <h3>Punjabi Hits</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'punjabi-hits', 'Punjabi Hits', 'https://a.jsrdn.com/hls/23196/punjabi-hits/logo_20241010_204324_70.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/punjabi-hits/master.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Desi Channel -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/9xtashan-white.png" alt="9x Tashan">
+            <h3>9x Tashan</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, '9x-tashan', '9x Tashan', 'https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/9xtashan-white.png')">&#9734;</i>
+            <button onclick="openVideo('https://livegeoroueu.akamaized.net/28072023/smil:9xtashan.smil/playlist.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Gaunda Punjab TV -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="" alt="Gaunda Punjab TV">
+            <h3>Gaunda Punjab TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'gaunda-punjab-tv', 'Gaunda Punjab TV', '')">&#9734;</i>
+            <button onclick="openVideo('http://start.agmediachandigarh.com/gaundapunjab/tv/playlist.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Desi Channel -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://i.ibb.co/GkNXcLX/logo.png" alt="Desi Channel">
+            <h3>Desi Channel</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'desi-channel', 'Desi Channel', 'https://i.ibb.co/GkNXcLX/logo.png')">&#9734;</i>
+            <button onclick="openVideo('http://live.wmncdn.net/desichannel/7e2dd0aed46b70a5c77f4affdb702e4b.sdp/mono.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Balle Balle -->
+        <div class="video" data-category="Music" data-language="Punjabi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23060/balle-balle/logo_20231219_184445_68.png" alt="Balle Balle">
+            <h3>Balle Balle</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'balle-balle', 'Balle Balle', 'https://a.jsrdn.com/hls/23060/balle-balle/logo_20231219_184445_68.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/balle-balle/index.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Joo Music -->
+        <div class="video" data-category="Music" data-language="Hindi" data-country="India">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSisiK50nT9KXOAVZcRYy4aTrv4cVP9btrY4_s2KvXzXaSzGeUEmvgE3Gj4&s=10" alt="Joo Music">
+            <h3>Joo Music</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'joo-music', 'Joo Music', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSisiK50nT9KXOAVZcRYy4aTrv4cVP9btrY4_s2KvXzXaSzGeUEmvgE3Gj4&s=10')">&#9734;</i>
+            <button onclick="openVideo('https://livecdn.live247stream.com/joomusic/tv/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- 9X Jalwa -->
+        <div class="video" data-category="Music" data-language="Hindi" data-country="India">
+            <img src="https://i0.wp.com/www.freelivetv.org/wp-content/uploads/2024/08/9X-Jalwa.png?resize=150%2C150&ssl=1" alt="9X Jalwa">
+            <h3>9X Jalwa</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, '9x-jalwa', '9X Jalwa', 'https://i0.wp.com/www.freelivetv.org/wp-content/uploads/2024/08/9X-Jalwa.png?resize=150%2C150&ssl=1')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/9x-jalwa/47bdb49d-f6f3-4927-a9ea-12c4c5afc732/0.m3u8')">Play</button>
+        </div>
+    </div>
+    <p id="noResultsMessage" style="display: none;">No Results Found</p>
+</section>
+<!-- Movies Section -->
+<section class="section" id="movies">
+    <h2>Movies <a href="Movie.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- Shemaroo Bollywood -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://i.ibb.co/KjjqnRH/Picsart-23-06-30-21-35-20-283.png" alt="Sheemaroo Bollywood">
+            <h3>Sheemaroo Bollywood</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'sheemaroo-bollywood', 'Sheemaroo Bollywood', 'https://i.ibb.co/KjjqnRH/Picsart-23-06-30-21-35-20-283.png')">&#9734;</i>
+            <button onclick="openVideo('https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00864-shemarooenterta-shemabollywood-ono/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Zee Bollywood HD -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBfZ4G2BNukWrerCJwyzLLkrDk_QvrpXyRJw1cIeEdLA&s" alt="Zee Bollywood HD">
+            <h3>Zee Bollywood HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'zee-bollywood-hd', 'Zee Bollywood HD', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBfZ4G2BNukWrerCJwyzLLkrDk_QvrpXyRJw1cIeEdLA&s')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-hd/43e99595-3ab3-4f82-a828-0d32dc308c98/0.m3u8')">Play</button>
+        </div>
+
+        <!-- Filmachi -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="" alt="Filmachi">
+            <h3>Filmachi</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'filmachi', 'Filmachi', '')">&#9734;</i>
+            <button onclick="openVideo('https://epiconvh.s.llnwi.net/live/filamchi/master_1080.m3u8')">Play</button>
+        </div>
+
+        <!-- Zee Action -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Zee%20Action.png" alt="Zee Action">
+            <h3>Zee Action</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'zee-action', 'Zee Action', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Zee%20Action.png')">&#9734;</i>
+            <button onclick="openVideo('https://la.drmlive.au/tp/zee-zeeaction.m3u8')">Play</button>
+        </div>
+
+        <!-- &Pictures HD -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/And%20Pictures%20.png" alt="&Pictures HD">
+            <h3>&Pictures HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'and-pictures-hd', '&Pictures HD', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/And%20Pictures%20.png')">&#9734;</i>
+            <button onclick="openVideo('https://la.drmlive.au/tp/zee-pictures.m3u8')">Play</button>
+        </div>
+
+        <!-- Bollywood Prime -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23145/bollywood-prime/thumbh_20211202_231542_270.jpg" alt="Bollywood Prime">
+            <h3>Bollywood Prime</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'bollywood-prime', 'Bollywood Prime', 'https://a.jsrdn.com/hls/23145/bollywood-prime/thumbh_20211202_231542_270.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-prime/3850b620-3d48-4f69-a540-27e9f3262077/3.m3u8')">Play</button>
+        </div>
+
+        <!-- Bollywood HD -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23077/bollywood-hd/thumbh_20240521_223614_270.jpg" alt="Bollywood HD">
+            <h3>Bollywood HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'bollywood-hd', 'Bollywood HD', 'https://a.jsrdn.com/hls/23077/bollywood-hd/thumbh_20240521_223614_270.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-hd/43e99595-3ab3-4f82-a828-0d32dc308c98/0.m3u8')">Play</button>
+        </div>
+
+        <!-- Bollywood Classic HD -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="" alt="Bollywood Classic HD">
+            <h3>Bollywood Classic HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'bollywood-classic-hd', 'Bollywood Classic HD', '')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-classic/manifest.m3u8')">Play</button>
+        </div>
+
+        <!-- Action Hollywood Movies -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/English%20Movies.jpeg" alt="Action Hollywood Movies">
+            <h3>Action Hollywood Movies</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'action-hollywood-movies', 'Action Hollywood Movies', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/English%20Movies.jpeg')">&#9734;</i>
+            <button onclick="openVideo('https://amg01076-lightningintern-actionhollywood-samsungnz-82rry.amagi.tv/playlist/amg01076-lightningintern-actionhollywood-samsungnz/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- South Station -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/d37tJvZH/South-Station.jpg" alt="South Station">
+            <h3>South Station</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'south-station', 'South Station', 'https://i.postimg.cc/d37tJvZH/South-Station.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://cc-tke03xaj1wszc.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-tke03xaj1wszc/South_Station_IN/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- The Movie Club -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/qqChj2wv/The-Movie-Club.png" alt="The Movie Club">
+            <h3>The Movie Club</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'the-movie-club', 'The Movie Club', 'https://i.postimg.cc/qqChj2wv/The-Movie-Club.png')">&#9734;</i>
+            <button onclick="openVideo('https://cc-jytb1qhmgqh5a.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-jytb1qhmgqh5a/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Bollywood 4 u -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/yuppfast/content/common/channel/logos/sinxiy.png" alt="Bollywood 4 u">
+            <h3>Bollywood 4 u</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'bollywood-4-u', 'Bollywood 4 u', 'https://d229kpbsb5jevy.cloudfront.net/yuppfast/content/common/channel/logos/sinxiy.png')">&#9734;</i>
+            <button onclick="openVideo('https://streams2.sofast.tv/ptnr-yupptv/title-BOLLYWOOD-4U-ENG_yupptv/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/22d13e33-8705-40e8-9809-4e80aa795f15/173d8a01-0e0a-46fd-9fae-587ceb351eb5/1.m3u8')">Play</button>
+        </div>
+
+        <!-- Hollywood Desi -->
+        <div class="video" data-category="Movies" data-language="Hindi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/23143/hollywood-desi/logo_20240216_230542_70.png" alt="Hollywood Desi">
+            <h3>Hollywood Desi</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'hollywood-desi', 'Hollywood Desi', 'https://a.jsrdn.com/hls/23143/hollywood-desi/logo_20240216_230542_70.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/hollywood-desi/playlist.m3u8')">Play</button>
+        </div>
+    </div>
+    <p id="noResultsMessage" style="display: none;">No Results Found</p>
+</section>
+<!-- Sports Section -->
+<section class="section" id="sports">
+    <h2>Sports <a href="Sports.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- Star Sports 1 HD -->
+        <div class="video" data-category="Sports" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg" alt="Star Sports 1 HD">
+            <h3>Star Sports 1 HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'star-sports-1-hd', 'Star Sports 1 HD', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Star%20Sports%201%40.jpeg')">&#9734;</i>
+            <button onclick="openVideo('http://41.205.93.154/STARSPORTS1/index.m3u8')">Play</button>
+        </div>
+
+        <!-- Sony Sports Ten 1 HD -->
+        <div class="video" data-category="Sports" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Sony%20Sports%20Ten%201.png" alt="Sony Sports Ten 1 HD">
+            <h3>Sony Sports Ten 1 HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'sony-sports-ten-1-hd', 'Sony Sports Ten 1 HD', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Sony%20Sports%20Ten%201.png')">&#9734;</i>
+            <button onclick="openVideo('https://bdixtv24.site/toffee/live.php?id=43dcec1011e7&e=.m3u8')">Play</button>
+        </div>
+
+        <!-- Sony Sports Ten 3 HD -->
+        <div class="video" data-category="Sports" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sports%20Ten%203.png" alt="Sony Sports Ten 3 HD">
+            <h3>Sony Sports Ten 3 HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'sony-sports-ten-3-hd', 'Sony Sports Ten 3 HD', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sports%20Ten%203.png')">&#9734;</i>
+            <button onclick="openVideo('https://bdixtv24.site/toffee/live.php?id=edc6a07e4754&e=.m3u8')">Play</button>
+        </div>
+
+        <!-- Sony Sports Ten 5 -->
+        <div class="video" data-category="Sports" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sports%20Ten%205.png" alt="Sony Sports Ten 5">
+            <h3>Sony Sports Ten 5</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'sony-sports-ten-5', 'Sony Sports Ten 5', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/56e54462053b1b278b80b532c89c01f17e360fd5/Sony%20Sports%20Ten%205.png')">&#9734;</i>
+            <button onclick="openVideo('https://bdixtv24.site/toffee/live.php?id=fd6de8bd1666&e=.m3u8')">Play</button>
+        </div>
+
+        <!-- PTV Sports -->
+        <div class="video" data-category="Sports" data-language="Urdu" data-country="Pakistan">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/PTV%20Sports.png" alt="PTV Sports">
+            <h3>PTV Sports</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ptv-sports', 'PTV Sports', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/PTV%20Sports.png')">&#9734;</i>
+            <button onclick="openVideo('http://125.209.88.166:45793/BRN/PTVSports.stream/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- A Sports -->
+        <div class="video" data-category="Sports" data-language="English" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/A%20Sports.png" alt="A Sports">
+            <h3>A Sports</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'a-sports', 'A Sports', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/A%20Sports.png')">&#9734;</i>
+            <button onclick="openVideo('http://125.209.88.166:45793/BRN/ArySports.stream/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Geo Super -->
+        <div class="video" data-category="Sports" data-language="Urdu" data-country="Pakistan">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/GEO%20Super.png" alt="Geo Super">
+            <h3>Geo Super</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'geo-super', 'Geo Super', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/GEO%20Super.png')">&#9734;</i>
+            <button onclick="openVideo('http://125.209.88.166:45793/BRN/GeoSuper.stream/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- RTA Sports -->
+        <div class="video" data-category="Sports" data-language="English" data-country="India">
+            <h3>RTA Sports</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'rta-sports', 'RTA Sports', '')">&#9734;</i>
+            <button onclick="openVideo('https://rtatv.akamaized.net/Content/HLS/Live/channel(RTA3)/variant.m3u8')">Play</button>
+        </div>
+
+        <!-- Ten Sports PK -->
+        <div class="video" data-category="Sports" data-language="Urdu" data-country="Pakistan">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Ten%20Sports%20PK.png" alt="Ten Sports PK">
+            <h3>Ten Sports PK</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ten-sports-pk', 'Ten Sports PK', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Ten%20Sports%20PK.png')">&#9734;</i>
+            <button onclick="openVideo('http://125.209.88.166:45793/BRN/TenSports.stream/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Ten Sports HD -->
+        <div class="video" data-category="Sports" data-language="Hindi" data-country="India">
+            <h3>Ten Sports HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ten-sports-hd', 'Ten Sports HD', '')">&#9734;</i>
+            <button onclick="openVideo('http://125.209.88.166:45793/BRN/TenSports.stream/playlist.m3u8')">Play</button>
+        </div>
+    </div>
+    <p id="noResultsMessage" style="display: none;">No Results Found</p>
+</section>
+<!-- News Section -->
+<section class="section" id="news">
+    <h2>News <a href="News.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- Aaj Tak -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/RpIdCB3.png" alt="Aaj Tak">
+            <h3>Aaj Tak</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'aaj-tak', 'Aaj Tak', 'https://i.imgur.com/RpIdCB3.png')">&#9734;</i>
+            <button onclick="openVideo('https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8')">Play</button>
+        </div>
+
+        <!-- ABP News -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://jiotv.catchup.cdn.jio.com/dare_images/images/ABP_News_India.png" alt="ABP News">
+            <h3>ABP News</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'abp-news', 'ABP News', 'https://jiotv.catchup.cdn.jio.com/dare_images/images/ABP_News_India.png')">&#9734;</i>
+            <button onclick="openVideo('https://abplivetv.akamaized.net/hls/live/2043010/hindi/master.m3u8')">Play</button>
+        </div>
+
+        <!-- NDTV India -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://jiotv.catchup.cdn.jio.com/dare_images/images/NDTV_India.png" alt="NDTV India">
+            <h3>NDTV India</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ndtv-india', 'NDTV India', 'https://jiotv.catchup.cdn.jio.com/dare_images/images/NDTV_India.png')">&#9734;</i>
+            <button onclick="openVideo('https://ndtvindiaelemarchana.akamaized.net/hls/live/2003679-b/ndtvindia/master.m3u8')">Play</button>
+        </div>
+
+        <!-- India TV -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://jiotv.catchup.cdn.jio.com/dare_images/images/India_TV.png" alt="India TV">
+            <h3>India TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'india-tv', 'India TV', 'https://jiotv.catchup.cdn.jio.com/dare_images/images/India_TV.png')">&#9734;</i>
+            <button onclick="openVideo('https://pl-indiatvnews.akamaized.net/out/v1/db79179b608641ceaa5a4d0dd0dca8da/index.m3u8')">Play</button>
+        </div>
+
+        <!-- PTC News -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/8BHV6Gr.png" alt="PTC News">
+            <h3>PTC News</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ptc-news', 'PTC News', 'https://i.imgur.com/8BHV6Gr.png')">&#9734;</i>
+            <button onclick="openVideo('https://ythls.armelin.one/channel/UCQLEbraENUGWh6p1Rv664rQ.m3u8')">Play</button>
+        </div>
+
+        <!-- Zee Punjab Haryana Himachal -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/wnALPbu.png" alt="Zee Punjab Haryana Himachal">
+            <h3>Zee Punjab Haryana Himachal</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'zee-punjab-haryana-himachal', 'Zee Punjab Haryana Himachal', 'https://i.imgur.com/wnALPbu.png')">&#9734;</i>
+            <button onclick="openVideo('https://ythls.armelin.one/channel/UCmhe0p2-m_KURZYQNchK-QQ.m3u8')">Play</button>
+        </div>
+
+        <!-- TV Punjab -->
+        <div class="video" data-category="News" data-language="Punjabi" data-country="Pakistan">
+            <img src="https://a.jsrdn.com/hls/23015/tv-punjab/logo_20231219_223846_50.png" alt="TV Punjab">
+            <h3>TV Punjab</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'tv-punjab', 'TV Punjab', 'https://a.jsrdn.com/hls/23015/tv-punjab/logo_20231219_223846_50.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/tv-punjab/master.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Chardiakla Time TV -->
+        <div class="video" data-category="News" data-language="Punjabi" data-country="India">
+            <img src="" alt="Chardiakla Time TV">
+            <h3>Chardiakla Time TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'chardiakla-time-tv', 'Chardiakla Time TV', '')">&#9734;</i>
+            <button onclick="openVideo('https://chardikalagurbanitv.gigabitcdn.net/in-chardikala/chardikala-timetv/playlist.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- MH1 Dilse -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="" alt="MH1 Dilse">
+            <h3>MH1 Dilse</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'mh1-dilse', 'MH1 Dilse', '')">&#9734;</i>
+            <button onclick="openVideo('https://mhlive.paramountinfosystem.com/mhonedilse/098f6bcd4621d373cade4e832627b4f6.sdp/playlist.m3u8')">Watch Now</button>
+        </div>
+
+        <!-- Global India TV -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/0jJN468h/000c3c70-a7c7-4105-be5e-0eeaae1b7c0b.jpg" alt="Global India TV">
+            <h3>Global India TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'global-india-tv', 'Global India TV', 'https://i.postimg.cc/0jJN468h/000c3c70-a7c7-4105-be5e-0eeaae1b7c0b.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://server.livelegitpro.in/globalindiatv/globalindiatv/video.m3u8')">Play</button>
+        </div>
+
+        <!-- Good News Today -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/SxbyGnDS/image_75.jpg" alt="Good News Today">
+            <h3>Good News Today</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'good-news-today', 'Good News Today', 'https://i.postimg.cc/SxbyGnDS/image_75.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://tezlive-amd.akamaized.net/hls/live/2016145/gnt/gntlive/live_720p/chunks.m3u8')">Play</button>
+        </div>
+
+        <!-- IBC24 News -->
+        <div class="video" data-category="News" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/bz6O0Be.jpg" alt="IBC24 News">
+            <h3>IBC24 News</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ibc24-news', 'IBC24 News', 'https://i.imgur.com/bz6O0Be.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://livetv.ibc24.in/livestream.m3u')">Play</button>
+        </div>
+    </div>
+    <p id="noResultsMessage" style="display: none;">No Results Found</p>
+</section>
+<!-- Documentary Section -->
+<section class="section" id="documentary">
+    <h2>Documentary <a href="Documentary.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- Discovery Hindi HD -->
+        <div class="video" data-category="Documentary" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Discovery%20.png" alt="Discovery Hindi HD">
+            <h3>Discovery Hindi HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'discovery-hindi-hd', 'Discovery Hindi HD', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Discovery%20.png')">&#9734;</i>
+            <button onclick="openVideo('https://varun-iptv.netlify.app/m3u/discoveryhindi.m3u8')">Play</button>
+        </div>
+
+        <!-- Discovery Science Multi Audio -->
+        <div class="video" data-category="Documentary" data-language="Multi Audio" data-country="Global">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Discovery%20Science%20.png" alt="Discovery Science">
+            <h3>Discovery Science</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'discovery-science', 'Discovery Science', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Discovery%20Science%20.png')">&#9734;</i>
+            <button onclick="openVideo('https://raw.githubusercontent.com/subirkumarpaul/My-iptv/main/Discovery-Science.m3u8')">Play</button>
+        </div>
+
+        <!-- Investigation Discovery Multi Audio -->
+        <div class="video" data-category="Documentary" data-language="Multi Audio" data-country="Global">
+            <img src="https://images.toffeelive.com/images/program/18095/logo/240x240/mobile_logo_452964001673178334.png" alt="Investigation Discovery">
+            <h3>Investigation Discovery</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'investigation-discovery', 'Investigation Discovery', 'https://images.toffeelive.com/images/program/18095/logo/240x240/mobile_logo_452964001673178334.png')">&#9734;</i>
+            <button onclick="openVideo('https://od.lk/s/ODRfNzIxOTE5Njdf/Investigation_Discovery.m3u8')">Play</button>
+        </div>
+
+        <!-- Animal Planet -->
+        <div class="video" data-category="Documentary" data-language="English" data-country="Global">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Animal%20Planet.png" alt="Animal Planet">
+            <h3>Animal Planet</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'animal-planet', 'Animal Planet', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/Animal%20Planet.png')">&#9734;</i>
+            <button onclick="openVideo('https://raw.githubusercontent.com/subirkumarpaul/My-iptv/main/Animal-Planet.m3u8')">Play</button>
+        </div>
+
+        <!-- TLC HD -->
+        <div class="video" data-category="Lifestyle" data-language="English" data-country="Global">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/TLC.png" alt="TLC HD">
+            <h3>TLC HD</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'tlc-hd', 'TLC HD', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/TLC.png')">&#9734;</i>
+            <button onclick="openVideo('https://raw.githubusercontent.com/subirkumarpaul/My-iptv/main/Tlc.m3u8')">Play</button>
+        </div>
+
+        <!-- Wild Earth -->
+        <div class="video" data-category="Nature" data-language="English" data-country="Global">
+            <img src="https://via.placeholder.com/150" alt="Wild Earth">
+            <h3>Wild Earth</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'wild-earth', 'Wild Earth', 'https://via.placeholder.com/150')">&#9734;</i>
+            <button onclick="openVideo('https://wildearth-roku.amagi.tv/masterR720P.m3u8')">Play</button>
+        </div>
+
+        <!-- Wild Nature -->
+        <div class="video" data-category="Nature" data-language="English" data-country="Global">
+            <img src="https://via.placeholder.com/150" alt="Wild Nature">
+            <h3>Wild Nature</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'wild-nature', 'Wild Nature', 'https://via.placeholder.com/150')">&#9734;</i>
+            <button onclick="openVideo('https://wildearth-plex.amagi.tv/master.m3u8')">Play</button>
+        </div>
+
+        <!-- 4k Nature -->
+        <div class="video" data-category="Nature" data-language="English" data-country="Global">
+            <img src="https://via.placeholder.com/150" alt="4k Nature">
+            <h3>4k Nature</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, '4k-nature', '4k Nature', 'https://via.placeholder.com/150')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/4k-travel-tv/manifest.m3u8?v=1')">Play</button>
+        </div>
+
+        <!-- Heritage+ -->
+        <div class="video" data-category="Cultural" data-language="English" data-country="Global">
+            <img src="https://i.postimg.cc/zfcbR2zb/Heritage.jpg" alt="Heritage+">
+            <h3>Heritage+</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'heritage-plus', 'Heritage+', 'https://i.postimg.cc/zfcbR2zb/Heritage.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://cdn-singapore-5160-prod.tsv2.amagi.tv/linear/amg02132-sofast-heritage-samsungin/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Real Crime -->
+        <div class="video" data-category="Crime Documentary" data-language="English" data-country="Global">
+            <img src="https://i.postimg.cc/G27NvJsM/Real-Crime-TV.jpg" alt="Real Crime">
+            <h3>Real Crime</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'real-crime', 'Real Crime', 'https://i.postimg.cc/G27NvJsM/Real-Crime-TV.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://lds-realcrimebeta-rakuten.amagi.tv/playlist.m3u8')">Play</button>
+        </div>
+    </div>
+    <p id="noResultsMessage" style="display: none;">No Results Found</p>
+</section>
+
+<!-- Kids Section -->
+<section class="section" id="kids">
+    <h2>Kids <a href="Kids.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- Chumbak TV -->
+        <div class="video" data-category="Kids" data-language="Hindi" data-country="India">
+            <img src="https://i0.wp.com/www.freelivetv.org/wp-content/uploads/2024/08/chumbak-tv.png?resize=150%2C150&ssl=1" alt="Chumbak TV">
+            <h3>Chumbak TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'chumbak-tv', 'Chumbak TV', 'https://i0.wp.com/www.freelivetv.org/wp-content/uploads/2024/08/chumbak-tv.png?resize=150%2C150&ssl=1')">&#9734;</i>
+            <button onclick="openVideo('https://cdn.live.shemaroome.com/shemarooChumbakTV/smil:shemarooChumbakTVadp.smil/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Pogo -->
+        <div class="video" data-category="Kids" data-language="Hindi" data-country="India">
+            <img src="https://raw.githubusercontent.com/subirkumarpaul/Logo/main/POGO.jpeg" alt="Pogo">
+            <h3>Pogo</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'pogo', 'Pogo', 'https://raw.githubusercontent.com/subirkumarpaul/Logo/main/POGO.jpeg')">&#9734;</i>
+            <button onclick="openVideo('https://amg01448-samsungin-pogo-samsungin-dzccl.amagi.tv/playlist/amg01448-samsungin-pogo-samsungin/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Zoo Moo -->
+        <div class="video" data-category="Kids" data-language="Hindi" data-country="India">
+            <img src="https://i.postimg.cc/3RxSzVbd/image.jpg" alt="Zoo Moo">
+            <h3>Zoo Moo</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'zoo-moo', 'Zoo Moo', 'https://i.postimg.cc/3RxSzVbd/image.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://amg01553-blueantmediaasi-zoomoonz-samsungnz-rdufn.amagi.tv/playlist/amg01553-blueantmediaasi-zoomoonz-samsungnz/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- Jungle Book -->
+        <div class="video" data-category="Kids" data-language="Hindi" data-country="India">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdYDuOawIs57oT6PcXREjNLnVUF58DK9qrsQ&s" alt="Jungle Book">
+            <h3>Jungle Book</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'jungle-book', 'Jungle Book', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdYDuOawIs57oT6PcXREjNLnVUF58DK9qrsQ&s')">&#9734;</i>
+            <button onclick="openVideo('https://cc-4bhi5osabejc9.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-4bhi5osabejc9/junglebook.m3u8')">Play</button>
+        </div>
+    </div>
+    <p id="noResultsMessage" style="display: none;">No Results Found</p>
+</section>
+
+<!-- Spiritual Section -->
+<section class="section" id="spirituals">
+    <h2>Spirituals <a href="Spirituals.html" class="see-all">See All</a></h2>
+    <div class="arrows">
+        <span class="arrow arrow-left">&#9664;</span>
+        <span class="arrow arrow-right">&#9654;</span>
+    </div>
+    <div class="video-container">
+        <!-- Sanskar Web TV -->
+        <div class="video" data-category="Spirituals" data-language="Hindi" data-country="India">
+            <img src="https://i.imgur.com/mu2B6hw.png" alt="Sanskar Web TV">
+            <h3>Sanskar Web TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'sanskar-web-tv', 'Sanskar Web TV', 'https://i.imgur.com/mu2B6hw.png')">&#9734;</i>
+            <button onclick="openVideo('https://deatfcv3xdvi3.cloudfront.net/out/v1/7a43dd2f64e34ec28da1b4bd6923251a/index.m3u8')">Play</button>
+        </div>
+
+        <!-- PTC Simran -->
+        <div class="video" data-category="Spirituals" data-language="Punjabi" data-country="India">
+            <img src="https://i.imgur.com/T5VK7G5.png" alt="PTC Simran">
+            <h3>PTC Simran</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'ptc-simran', 'PTC Simran', 'https://i.imgur.com/T5VK7G5.png')">&#9734;</i>
+            <button onclick="openVideo('https://streaming.ptcplay.com/ptcSimranINOne/smil:Live.smil/playlist.m3u8')">Play</button>
+        </div>
+
+        <!-- TV84 -->
+        <div class="video" data-category="Spirituals" data-language="Punjabi" data-country="India">
+            <img src="https://i.imgur.com/Eh4kfwR.png" alt="TV84">
+            <h3>TV84</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'tv84', 'TV84', 'https://i.imgur.com/Eh4kfwR.png')">&#9734;</i>
+            <button onclick="openVideo('https://cdn20.liveonlineservices.com/hls/tv84.m3u8')">Play</button>
+        </div>
+
+        <!-- Global Punjab -->
+        <div class="video" data-category="Spirituals" data-language="Punjabi" data-country="India">
+            <img src="https://i.postimg.cc/L6dN3pYh/6238bf41-e53f-4087-9a9e-fc34579a8e89.jpg" alt="Global Punjab">
+            <h3>Global Punjab</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'global-punjab', 'Global Punjab', 'https://i.postimg.cc/L6dN3pYh/6238bf41-e53f-4087-9a9e-fc34579a8e89.jpg')">&#9734;</i>
+            <button onclick="openVideo('https://server.livelegitpro.in/globalpunjab/globalpunjab/index.m3u8')">Play</button>
+        </div>
+
+        <!-- Garv Punjab Gurbani -->
+        <div class="video" data-category="Spirituals" data-language="Punjabi" data-country="India">
+            <img src="https://a.jsrdn.com/hls/22994/garv-punjab-gurbani/logo_20231219_202149_65.png" alt="Garv Punjab Gurbani">
+            <h3>Garv Punjab Gurbani</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, 'garv-punjab-gurbani', 'Garv Punjab Gurbani', 'https://a.jsrdn.com/hls/22994/garv-punjab-gurbani/logo_20231219_202149_65.png')">&#9734;</i>
+            <button onclick="openVideo('https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/garv-punjab-gurbani/index.m3u8')">Play</button>
+        </div>
+
+        <!-- 5aab TV -->
+        <div class="video" data-category="Spirituals" data-language="Punjabi" data-country="India">
+            <img src="https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/5aab-tv-black.png" alt="5aab TV">
+            <h3>5aab TV</h3>
+            <i class="favorite-icon" onclick="toggleFavorite(this, '5aab-tv', '5aab TV', 'https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/5aab-tv-black.png')">&#9734;</i>
+            <button onclick="openVideo('http://158.69.124.9:1935/5aabtv/5aabtv/playlist.m3u8')">Play</button>
+        </div>
+    </div>
+    <p id="noResultsMessage" style="display: none;">No Results Found</p>
+</section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 My WebTV | All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
+    <script src="js/INDEX.js"></script>
+</body>
+</html>
